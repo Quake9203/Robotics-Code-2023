@@ -13,7 +13,7 @@ public  class OI {
  * NOTE: Make a single method for all the below "Get" methods
  */
 
-public static  double GetXboxLeftJoyX() {
+public static double GetXboxLeftJoyX() {
         
     return Math.abs(xbox.getX(Hand.kLeft)) < deadzone ? 0.0 : xbox.getX(Hand.kLeft);
 }
