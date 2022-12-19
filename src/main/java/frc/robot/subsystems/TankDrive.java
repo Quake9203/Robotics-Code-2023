@@ -1,7 +1,6 @@
-
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;  // Replace with MotorControllerGroup
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -17,8 +16,8 @@ public static WPI_TalonSRX rightTalonSlave = new WPI_TalonSRX(RobotMap.rightTalo
 public static WPI_TalonSRX leftTalonMaster = new WPI_TalonSRX(RobotMap.leftTalonMasterCAN);
 public static WPI_TalonSRX leftTalonSlave = new WPI_TalonSRX(RobotMap.leftTalonSlaveCAN);
 
-public static SpeedControllerGroup leftTalons = new SpeedControllerGroup(leftTalonMaster, leftTalonSlave);
-public static SpeedControllerGroup rightTalons = new SpeedControllerGroup(rightTalonMaster, rightTalonSlave);
+public static SpeedControllerGroup leftTalons = new SpeedControllerGroup(leftTalonMaster, leftTalonSlave);  // Replace with MotorControllerGroup
+public static SpeedControllerGroup rightTalons = new SpeedControllerGroup(rightTalonMaster, rightTalonSlave);  // Replace with MotorControllerGroup
 
 public static DifferentialDrive drive = new DifferentialDrive(rightTalons, leftTalons);
 
@@ -30,37 +29,43 @@ public static void DrivetrainSetup() {
     leftTalonSlave.configFactoryDefault();
 
 
-    rightTalonSlave.follow(rightTalonMaster);
-    leftTalonSlave.follow(leftTalonMaster);
+    rightTalonSlave.follow(rightTalonMaster); // Tells right slave to follow right master
+    leftTalonSlave.follow(leftTalonMaster);   // Tells left slave to follow left master
 
     rightTalonMaster.setInverted(true);
-    rightTalonSlave.setInverted(InvertType.FollowMaster);
+    rightTalonSlave.setInverted(InvertType.FollowMaster); // Inverts or doesn't invert motor based on if master is inverted or not
     leftTalonMaster.setInverted(true);
     leftTalonSlave.setInverted(InvertType.FollowMaster);
 
-    drive.setRightSideInverted(false);
+    drive.setRightSideInverted(false);  // Does the method being called even exist?! Cannot find setRightSideInverted in WPIlib docs or Phoenix CTRE docs 
 }
 
-public static double getLeftDriveSpeed() {
-    double raw = 0;
 
- if (OI.xbox.getRawButton(1)) {
-    raw = OI.GetXboxLeftJoyY();
+
+/** 
+ * Following methods near identical besides button being got
+ * Possibly collaspable to one method which takes input for left or right
+ */
+public static double getLeftDriveSpeed() {
+    double speed = 0;
+
+ if (OI.xbox.getRawButton(1)) { // Checking if "turbo" is active
+    speed = OI.GetXboxLeftJoyY(); // Gets the up/down position of the left joystick
     } else {
-      raw = OI.GetXboxLeftJoyY()* 0.9;
+      speed = OI.GetXboxLeftJoyY()* 0.9; // Slowing down when "turbo" is not active
   }
-  return raw;
+  return speed; // Returns the speed at either 100% or 90%, depending on turbo state
 }
   public static double getRightDriveSpeed() {
-    double raw = 0;
+    double speed = 0;
 
  if (OI.xbox.getRawButton(1)) {
-    raw = OI.GetXboxRightJoyY();
+    speed = OI.GetXboxRightJoyY();
     } else {
-      raw = OI.GetXboxRightJoyY()* 0.9;
+      speed = OI.GetXboxRightJoyY()* 0.9;
   }
 
-    return raw;
+    return speed;
 }
 
 

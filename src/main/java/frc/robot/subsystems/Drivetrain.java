@@ -1,7 +1,6 @@
-
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;   // Should be replaced with MotorControllerGroup
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -18,8 +17,8 @@ public static WPI_TalonSRX leftTalonMaster = new WPI_TalonSRX(RobotMap.leftTalon
 public static WPI_TalonSRX leftTalonSlave = new WPI_TalonSRX(RobotMap.leftTalonSlaveCAN);
 
 
-public static SpeedControllerGroup leftTalons = new SpeedControllerGroup(leftTalonMaster, leftTalonSlave);
-public static SpeedControllerGroup rightTalons = new SpeedControllerGroup(rightTalonMaster, rightTalonSlave);
+public static SpeedControllerGroup leftTalons = new SpeedControllerGroup(leftTalonMaster, leftTalonSlave);  // Replace with MotorControllerGroup
+public static SpeedControllerGroup rightTalons = new SpeedControllerGroup(rightTalonMaster, rightTalonSlave);  // Replace with MotorControllerGroup
 
 public static DifferentialDrive drive = new DifferentialDrive(rightTalons, leftTalons);
 
@@ -43,27 +42,27 @@ public static void DrivetrainSetup() {
 }
 
 public static double getDriveSpeed() {
-    double raw = 0;
+    double speed = 0;
 
     if (OI.xbox.getRawButton(1)) {
-        raw = OI.GetXboxLeftJoyY();
+        speed = OI.GetXboxLeftJoyY();
     } else {
-        raw = OI.GetXboxLeftJoyY()* 0.75;
+        speed = OI.GetXboxLeftJoyY()* 0.75;
     }
 
-    return raw;
+    return speed;
 }
 
 
 public static double getDriveRotation() {
-    double raw = 0;
+    double rotation = 0;
 
     if (OI.xbox.getRawButton(1)) {
-        raw = OI.GetXboxLeftJoyX();
+        rotation = OI.GetXboxLeftJoyX();
     } else {
-        raw = OI.GetXboxLeftJoyX()* 0.5;
+        rotation = OI.GetXboxLeftJoyX()* 0.5;
     }
 
-    return raw;
+    return rotation;
 }
 }
