@@ -38,31 +38,33 @@ public static void DrivetrainSetup() {
     leftTalonMaster.setInverted(true);
     leftTalonSlave.setInverted(InvertType.FollowMaster);
 
-    drive.setRightSideInverted(false);
+    drive.setRightSideInverted(false);  /** EDIT: seemingly right-side used to be inverted by default, changed to off by default, method probably removed.
+                                        *  ~~Does the method being called even exist?! Cannot find setRightSideInverted in WPIlib docs or Phoenix CTRE docs~~ 
+                                        */
 }
 
-public static double getDriveSpeed() {
-    double speed = 0;
+    public static double getDriveSpeed() {
+        double speed = 0;
 
-    if (OI.xbox.getRawButton(1)) {
-        speed = OI.GetXboxLeftJoyY();
-    } else {
-        speed = OI.GetXboxLeftJoyY()* 0.75;
+        if (OI.xbox.getRawButton(1)) {
+            speed = OI.GetXboxLeftJoyY();
+        } else {
+            speed = OI.GetXboxLeftJoyY()* 0.75;
+        }
+
+        return speed;
     }
 
-    return speed;
-}
 
+    public static double getDriveRotation() {
+        double rotation = 0;
 
-public static double getDriveRotation() {
-    double rotation = 0;
+        if (OI.xbox.getRawButton(1)) {
+            rotation = OI.GetXboxLeftJoyX();
+        } else {
+            rotation = OI.GetXboxLeftJoyX()* 0.5;
+        }
 
-    if (OI.xbox.getRawButton(1)) {
-        rotation = OI.GetXboxLeftJoyX();
-    } else {
-        rotation = OI.GetXboxLeftJoyX()* 0.5;
+        return rotation;
     }
-
-    return rotation;
-}
 }

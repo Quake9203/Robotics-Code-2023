@@ -109,7 +109,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {  // Activates all appropriate functions incl shooter, lift, ball elevator, and drive mode
     //frc.robot.subsystems.Drivetrain.drive.arcadeDrive(Drivetrain.getDriveSpeed(), Drivetrain.getDriveRotation());
-    frc.robot.subsystems.Shooter.shooterVictorMaster.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());
+    frc.robot.subsystems.Shooter.shooterVictorMaster.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());  // Looks like two shooter inits because different motors used
     frc.robot.subsystems.Shooter.shooterVictorSPX.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());
     frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, Lift.getLiftSpeed());
     frc.robot.subsystems.Elevator.elevatorVictorMaster.set(ControlMode.PercentOutput, Elevator.getElevatorSpeed());

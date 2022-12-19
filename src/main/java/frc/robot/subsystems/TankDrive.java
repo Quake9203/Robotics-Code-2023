@@ -37,7 +37,9 @@ public static void DrivetrainSetup() {
     leftTalonMaster.setInverted(true);
     leftTalonSlave.setInverted(InvertType.FollowMaster);
 
-    drive.setRightSideInverted(false);  // Does the method being called even exist?! Cannot find setRightSideInverted in WPIlib docs or Phoenix CTRE docs 
+    drive.setRightSideInverted(false);  /** EDIT: seemingly right-side used to be inverted by default, changed to off by default, method probably removed.
+                                        *  ~~Does the method being called even exist?! Cannot find setRightSideInverted in WPIlib docs or Phoenix CTRE docs~~ 
+                                        */ 
 }
 
 

@@ -15,6 +15,9 @@ import frc.robot.OI;
 import frc.robot.RobotMap;
 
 public class ArcadeDrive {
+/**
+ * Initializing each motor used in this class
+ */
 public static WPI_TalonSRX rightTalonMaster = new WPI_TalonSRX(RobotMap.rightTalonMasterCAN);
 public static WPI_TalonSRX rightTalonSlave = new WPI_TalonSRX(RobotMap.rightTalonSlaveCAN);
 
@@ -25,7 +28,8 @@ public static WPI_TalonSRX leftTalonSlave = new WPI_TalonSRX(RobotMap.leftTalonS
 public static SpeedControllerGroup leftTalons = new SpeedControllerGroup(leftTalonMaster, leftTalonSlave);  // Replace with MotorControllerGroup
 
 
-public static DifferentialDrive drive = new DifferentialDrive(rightTalonMaster, leftTalons);
+public static DifferentialDrive drive = new DifferentialDrive(rightTalonMaster, leftTalons);  /*  Oddly only includes 1 right but both lefts, 
+                                                                                              functionality should be same as including all 4 motors due to slave-master motors though (maybe..) */
 
 
 public static void DrivetrainSetup() {
@@ -37,9 +41,11 @@ public static void DrivetrainSetup() {
 
     rightTalonMaster.setInverted(true);
     rightTalonSlave.setInverted(InvertType.FollowMaster);
-
+    
     leftTalons.setInverted(true);
-    drive.setRightSideInverted(false);
+    drive.setRightSideInverted(false);  /** EDIT: seemingly right-side used to be inverted by default, changed to off by default, method probably removed.
+                                        *  ~~Does the method being called even exist?! Cannot find setRightSideInverted in WPIlib docs or Phoenix CTRE docs~~ 
+                                        */
 }
 
 

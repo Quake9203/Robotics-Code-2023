@@ -10,20 +10,20 @@ public class Elevator {
     public static VictorSPX elevatorVictorMaster = new VictorSPX(RobotMap.elevatorVictorMasterCAN);
 
     public static double getElevatorSpeed() {
-        double raw = 0;
+        double speed = 0;
 
-        if (OI.xbox.getRawButton(1)) {
-            raw = -0.45;
+        if (OI.xbox.getRawButton(1)) {  // ELevator turns on at 45% speed forward or backward depending on button pressed
+            speed = -0.45;
         } else {
             if(OI.xbox.getRawButton(2)) {
-                raw = 0.45;
+                speed = 0.45;
             }
             else {
-                raw = 0;
+                speed = 0;
             }
         }
 
-        return raw;
+        return speed;
     }
 
 }
