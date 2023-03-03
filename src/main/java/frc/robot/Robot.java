@@ -18,8 +18,9 @@ import frc.robot.subsystems.TankDrive;
 //import frc.robot.subsystems.ArcadeDrive;
 //import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Lift;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Hand;
+// import frc.robot.subsystems.Lift;
+// import frc.robot.subsystems.Shooter;
 
 
  
@@ -46,7 +47,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
   }
 
   /**
@@ -109,11 +110,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //frc.robot.subsystems.Drivetrain.drive.arcadeDrive(Drivetrain.getDriveSpeed(), Drivetrain.getDriveRotation());
-    frc.robot.subsystems.Shooter.shooterVictorMaster.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());
-    frc.robot.subsystems.Shooter.shooterVictorSPX.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());
-    frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, Lift.getLiftSpeed());
+    // frc.robot.subsystems.Shooter.shooterVictorMaster.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());
+    // frc.robot.subsystems.Shooter.shooterVictorSPX.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());
+    // frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, Lift.getLiftSpeed());
     frc.robot.subsystems.Elevator.elevatorVictorMaster.set(ControlMode.PercentOutput, Elevator.getElevatorSpeed());
     frc.robot.subsystems.TankDrive.drive.tankDrive(TankDrive.getLeftDriveSpeed(), TankDrive.getRightDriveSpeed());
+    frc.robot.subsystems.Hand.hand.setAngle(Hand.getHandPosition());
+
   }
 
   /**
@@ -121,5 +124,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    frc.robot.subsystems.Hand.hand.setAngle(Hand.getHandPosition());
   }
 }

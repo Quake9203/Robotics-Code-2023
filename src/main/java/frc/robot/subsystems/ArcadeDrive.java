@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -17,7 +17,7 @@ public static WPI_TalonSRX leftTalonMaster = new WPI_TalonSRX(RobotMap.leftTalon
 public static WPI_TalonSRX leftTalonSlave = new WPI_TalonSRX(RobotMap.leftTalonSlaveCAN);
 
 
-public static SpeedControllerGroup leftTalons = new SpeedControllerGroup(leftTalonMaster, leftTalonSlave);
+public static MotorControllerGroup leftTalons = new MotorControllerGroup(leftTalonMaster, leftTalonSlave);
 
 
 public static DifferentialDrive drive = new DifferentialDrive(rightTalonMaster, leftTalons);
@@ -34,7 +34,6 @@ public static void DrivetrainSetup() {
     rightTalonSlave.setInverted(InvertType.FollowMaster);
 
     leftTalons.setInverted(true);
-    drive.setRightSideInverted(false);
 }
 
 

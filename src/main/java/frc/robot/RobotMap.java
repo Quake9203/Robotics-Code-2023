@@ -14,6 +14,9 @@ public class RobotMap {
     public static int shooterVictorSPXCAN = 8;
     public static int liftVictorMasterCAN = 7; //brake mode
 
+    // new 2023
+    public static int handServoPWM = 0;
+
     //new 2019
     //public static int ballVictorMasterCAN = 10;
 
