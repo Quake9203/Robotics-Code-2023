@@ -10,12 +10,13 @@ public class RobotMap {
 
     //new 2020
     public static int elevatorVictorMasterCAN = 5; //brake mode
-    public static int shooterVictorMasterCAN = 6;
+    // public static int shooterVictorMasterCAN = 6;
     public static int shooterVictorSPXCAN = 8;
     public static int liftVictorMasterCAN = 7; //brake mode
 
     // new 2023
-    public static int handServoPWM = 0;
+    public static int handServoPWM = 9;
+    public static int armVictorCAN = 6;
 
     //new 2019
     //public static int ballVictorMasterCAN = 10;
