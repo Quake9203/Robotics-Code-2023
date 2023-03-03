@@ -1,26 +1,24 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-
+import edu.wpi.first.wpilibj.XboxController;
 
 public  class OI {
-    public static Joystick xbox = new Joystick(RobotMap.xboxUSB);
+    public static XboxController xbox = new XboxController(RobotMap.xboxUSB);
     private static double deadzone = 0.1;
 
 
     public static  double GetXboxLeftJoyX() {
         
-        return Math.abs(xbox.getX(Hand.kLeft)) < deadzone ? 0.0 : xbox.getX(Hand.kLeft);
+        return Math.abs(xbox.getLeftX()) < deadzone ? 0.0 : xbox.getLeftX();
     }
 
 public static double GetXboxLeftJoyY() {
-    return Math.abs(xbox.getY(Hand.kLeft)) < deadzone ? 0.0 : xbox.getY(Hand.kLeft);
+    return Math.abs(xbox.getLeftY()) < deadzone ? 0.0 : xbox.getLeftY();
 }
 
 
 public static double GetXboxRightJoyX() {
-    return Math.abs(xbox.getX(Hand.kRight)) < deadzone ? 0.0 : xbox.getX(Hand.kRight);
+    return Math.abs(xbox.getRightX()) < deadzone ? 0.0 : xbox.getRightX();
 }
 
 public static double GetXboxRightJoyY() {
