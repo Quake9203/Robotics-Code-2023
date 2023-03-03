@@ -29,6 +29,10 @@ public static double GetXboxRightTrigger() {
     return Math.abs(xbox.getRawAxis(3)) < deadzone ? 0.0 : xbox.getRawAxis(3);
 }
 
+public static double GetXboxLeftTrigger() {
+    return Math.abs(xbox.getLeftTriggerAxis()) < deadzone ? 0.0 : xbox.getLeftTriggerAxis();
+}
+
 
 
 

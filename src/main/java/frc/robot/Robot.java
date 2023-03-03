@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.TankDrive;
+import frc.robot.subsystems.Arm;
 //import frc.robot.subsystems.ArcadeDrive;
 //import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
@@ -98,8 +99,8 @@ public class Robot extends TimedRobot {
           frc.robot.subsystems.TankDrive.drive.tankDrive(0.6, 0.6);
         }
         frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, 0.75);
-        frc.robot.subsystems.Shooter.shooterVictorSPX.set(ControlMode.PercentOutput, -1);
-        frc.robot.subsystems.Shooter.shooterVictorMaster.set(ControlMode.PercentOutput, -1);
+        // frc.robot.subsystems.Shooter.shooterVictorSPX.set(ControlMode.PercentOutput, -1);
+        // frc.robot.subsystems.Shooter.shooterVictorMaster.set(ControlMode.PercentOutput, -1);
         break;
     }
   }
@@ -116,6 +117,7 @@ public class Robot extends TimedRobot {
     frc.robot.subsystems.Elevator.elevatorVictorMaster.set(ControlMode.PercentOutput, Elevator.getElevatorSpeed());
     frc.robot.subsystems.TankDrive.drive.tankDrive(TankDrive.getLeftDriveSpeed(), TankDrive.getRightDriveSpeed());
     frc.robot.subsystems.Hand.hand.setAngle(Hand.getHandPosition());
+    frc.robot.subsystems.Arm.armVictorSPX.set(ControlMode.PercentOutput, Arm.getArmExtension());
 
   }
 
