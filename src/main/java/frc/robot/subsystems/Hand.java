@@ -5,8 +5,9 @@ import frc.robot.OI;
 import edu.wpi.first.wpilibj.Servo;
 
 public class Hand {
-    public static Servo hand = new Servo(RobotMap.handServoPWM);
-    
+    public static Servo handTop = new Servo(RobotMap.handServoTopPWM);
+    public static Servo handBottom = new Servo(RobotMap.handServoBottomPWM);
+
     public static int getHandPosition() {
         int theta = 0;
 

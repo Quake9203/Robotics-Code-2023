@@ -98,7 +98,7 @@ public class Robot extends TimedRobot {
         if (matchTime > 13.0){
           frc.robot.subsystems.TankDrive.drive.tankDrive(0.6, 0.6);
         }
-        frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, 0.75);
+        // frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, 0.75);
         // frc.robot.subsystems.Shooter.shooterVictorSPX.set(ControlMode.PercentOutput, -1);
         // frc.robot.subsystems.Shooter.shooterVictorMaster.set(ControlMode.PercentOutput, -1);
         break;
@@ -116,7 +116,8 @@ public class Robot extends TimedRobot {
     // frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, Lift.getLiftSpeed());
     frc.robot.subsystems.Elevator.elevatorVictorMaster.set(ControlMode.PercentOutput, Elevator.getElevatorSpeed());
     frc.robot.subsystems.TankDrive.drive.tankDrive(TankDrive.getLeftDriveSpeed(), TankDrive.getRightDriveSpeed());
-    frc.robot.subsystems.Hand.hand.setAngle(Hand.getHandPosition());
+    frc.robot.subsystems.Hand.handTop.setAngle(Hand.getHandPosition());
+    frc.robot.subsystems.Hand.handBottom.setAngle(Hand.getHandPosition());
     frc.robot.subsystems.Arm.armVictorSPX.set(ControlMode.PercentOutput, Arm.getArmExtension());
 
   }
@@ -126,6 +127,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    frc.robot.subsystems.Hand.hand.setAngle(Hand.getHandPosition());
+    frc.robot.subsystems.Arm.armVictorSPX.set(ControlMode.PercentOutput, Arm.getArmExtension());
   }
 }

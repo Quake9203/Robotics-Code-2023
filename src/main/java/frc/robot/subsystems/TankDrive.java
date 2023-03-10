@@ -11,56 +11,56 @@ import frc.robot.OI;
 import frc.robot.RobotMap;
 
 public class TankDrive {
-public static WPI_TalonSRX rightTalonMaster = new WPI_TalonSRX(RobotMap.rightTalonMasterCAN);
-public static WPI_TalonSRX rightTalonSlave = new WPI_TalonSRX(RobotMap.rightTalonSlaveCAN);
+  public static WPI_TalonSRX rightTalonMaster = new WPI_TalonSRX(RobotMap.rightTalonMasterCAN);
+  public static WPI_TalonSRX rightTalonSlave = new WPI_TalonSRX(RobotMap.rightTalonSlaveCAN);
 
-public static WPI_TalonSRX leftTalonMaster = new WPI_TalonSRX(RobotMap.leftTalonMasterCAN);
-public static WPI_TalonSRX leftTalonSlave = new WPI_TalonSRX(RobotMap.leftTalonSlaveCAN);
+  public static WPI_TalonSRX leftTalonMaster = new WPI_TalonSRX(RobotMap.leftTalonMasterCAN);
+  public static WPI_TalonSRX leftTalonSlave = new WPI_TalonSRX(RobotMap.leftTalonSlaveCAN);
 
-public static MotorControllerGroup leftTalons = new MotorControllerGroup(leftTalonMaster, leftTalonSlave);
-public static MotorControllerGroup rightTalons = new MotorControllerGroup(rightTalonMaster, rightTalonSlave);
+  public static MotorControllerGroup leftTalons = new MotorControllerGroup(leftTalonMaster, leftTalonSlave);
+  public static MotorControllerGroup rightTalons = new MotorControllerGroup(rightTalonMaster, rightTalonSlave);
 
-public static DifferentialDrive drive = new DifferentialDrive(rightTalons, leftTalons);
-
-
-public static void DrivetrainSetup() {
-    rightTalonMaster.configFactoryDefault();
-    rightTalonSlave.configFactoryDefault();
-    leftTalonMaster.configFactoryDefault();
-    leftTalonSlave.configFactoryDefault();
+  public static DifferentialDrive drive = new DifferentialDrive(rightTalons, leftTalons);
 
 
-    rightTalonSlave.follow(rightTalonMaster);
-    leftTalonSlave.follow(leftTalonMaster);
+  public static void DrivetrainSetup() {
+      rightTalonMaster.configFactoryDefault();
+      rightTalonSlave.configFactoryDefault();
+      leftTalonMaster.configFactoryDefault();
+      leftTalonSlave.configFactoryDefault();
 
-    rightTalonMaster.setInverted(true);
-    rightTalonSlave.setInverted(InvertType.FollowMaster);
-    leftTalonMaster.setInverted(true);
-    leftTalonSlave.setInverted(InvertType.FollowMaster);
 
-}
+      rightTalonSlave.follow(rightTalonMaster);
+      leftTalonSlave.follow(leftTalonMaster);
 
-public static double getLeftDriveSpeed() {
-    double raw = 0;
+      rightTalonMaster.setInverted(false);
+      rightTalonSlave.setInverted(InvertType.FollowMaster);
+      leftTalonMaster.setInverted(true);
+      leftTalonSlave.setInverted(InvertType.FollowMaster);
 
- if (OI.xbox.getRawButton(1)) {
-    raw = OI.GetXboxLeftJoyY();
-    } else {
-      raw = OI.GetXboxLeftJoyY()* 0.9;
-  }
-  return raw;
-}
-  public static double getRightDriveSpeed() {
-    double raw = 0;
-
- if (OI.xbox.getRawButton(1)) {
-    raw = OI.GetXboxRightJoyY();
-    } else {
-      raw = OI.GetXboxRightJoyY()* 0.9;
   }
 
-    return raw;
-}
+  public static double getLeftDriveSpeed() {
+      double raw = 0;
+
+  if (OI.xbox.getRawButton(1)) {
+      raw = OI.GetXboxLeftJoyY();
+      } else {
+        raw = OI.GetXboxLeftJoyY()* 0.9;
+    }
+    return -raw;
+  }
+    public static double getRightDriveSpeed() {
+      double raw = 0;
+
+  if (OI.xbox.getRawButton(1)) {
+      raw = OI.GetXboxRightJoyY();
+      } else {
+        raw = OI.GetXboxRightJoyY()* 0.9;
+    }
+
+      return raw;
+  }
 
 
 }

@@ -15,7 +15,7 @@
 //     public static double getShooterSpeed() {
 //         double raw = 0;
 
-//         if (Math.abs(OI.xbox.getRawAxis(3)) > deadzone) {
+//         if (Math.abs(OI.xbox.getRawAxis(3)) > deadzone) { // right trigger
 //             raw = -1;
 //         } else {
 //             raw = 0;
