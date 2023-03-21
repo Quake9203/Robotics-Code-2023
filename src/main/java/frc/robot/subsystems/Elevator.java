@@ -13,15 +13,12 @@ public class Elevator {
     public static double getElevatorSpeed() {
         double raw = 0;
 
-        if (OI.xbox.getRawButton(1)) {
-            raw = -0.45;
+        if (OI.xbox.getXButton()) { // what button
+            raw = -0.250;
+        } else if (OI.xbox.getYButton()) { // what button
+            raw = 0.250;
         } else {
-            if(OI.xbox.getRawButton(2)) {
-                raw = 0.45;
-            }
-            else {
-                raw = 0;
-            }
+            raw = 0;
         }
 
         return raw;

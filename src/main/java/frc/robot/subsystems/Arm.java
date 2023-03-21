@@ -10,10 +10,12 @@ public class Arm {
     public static double getArmExtension() {
         double speed = 0.0;
 
-        if (OI.GetXboxRightTrigger() > 0) {
+        if ((OI.GetXboxLeftTrigger() > 0) && (OI.GetXboxRightTrigger() > 0)) {
+            speed = 0.0;
+        } else if (OI.GetXboxRightTrigger() > 0) {
             speed = OI.GetXboxRightTrigger() * 0.45;
         } else if (OI.GetXboxLeftTrigger() > 0) {
-            speed = OI.GetXboxLeftTrigger() * 0.45;
+            speed = OI.GetXboxLeftTrigger() * -0.45;
         }
 
         return speed;
