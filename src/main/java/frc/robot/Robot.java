@@ -76,6 +76,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    autoTimer.reset();
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
@@ -95,8 +96,16 @@ public class Robot extends TimedRobot {
       default:
         // Put default auto code here
         final double matchTime = autoTimer.get();
-        if (matchTime > 13.0){
-          frc.robot.subsystems.TankDrive.drive.tankDrive(0.6, 0.6);
+        double leftAutoSpeed = 0.5;
+        double rightAutoSpeed = -0.5; // a constant speed diff between right and left motors
+        
+        if (matchTime <= 7.5) {
+          frc.robot.subsystems.TankDrive.drive.tankDrive(rightAutoSpeed, leftAutoSpeed);
+          // if (matchTime <= 1.5) {
+          // frc.robot.subsystems.Elevator.elevatorVictorMaster.set(ControlMode.PercentOutput, 0.3);
+          // } else {
+          // frc.robot.subsystems.Elevator.elevatorVictorMaster.set(ControlMode.PercentOutput, 0.075);
+          // }
         }
         // frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, 0.75);
         // frc.robot.subsystems.Shooter.shooterVictorSPX.set(ControlMode.PercentOutput, -1);
