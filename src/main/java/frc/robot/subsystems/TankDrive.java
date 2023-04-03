@@ -43,24 +43,25 @@ public class TankDrive {
   public static double getLeftDriveSpeed() {
       double raw = 0;
 
-  if (OI.xbox.getRawButton(1)) {
-      raw = OI.GetXboxLeftJoyY();
+      if (OI.xbox.getRawButton(1)) {
+        raw = Math.signum(OI.GetXboxLeftJoyY()) * Math.pow(OI.GetXboxLeftJoyY(), 2);
       } else {
-        raw = OI.GetXboxLeftJoyY()* 0.9;
+        raw = Math.signum(OI.GetXboxLeftJoyY()) * Math.pow(OI.GetXboxLeftJoyY(), 2) * 0.9;
+      }
+
+      return -raw;
     }
-    return -raw;
-  }
     public static double getRightDriveSpeed() {
       double raw = 0;
 
-  if (OI.xbox.getRawButton(1)) {
-      raw = OI.GetXboxRightJoyY();
+      if (OI.xbox.getRawButton(1)) {
+        raw = Math.signum(OI.GetXboxRightJoyY()) * Math.pow(OI.GetXboxRightJoyY(), 2);
       } else {
-        raw = OI.GetXboxRightJoyY()* 0.9;
-    }
+        raw = Math.signum(OI.GetXboxRightJoyY()) * Math.pow(OI.GetXboxRightJoyY(), 2) * 0.9;
+      }
 
       return raw;
-  }
+    }
 
 
 }

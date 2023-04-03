@@ -8,13 +8,13 @@ public class Hand {
     public static Servo handTop = new Servo(RobotMap.handServoTopPWM);
     public static Servo handBottom = new Servo(RobotMap.handServoBottomPWM);
 
-    public static int getHandPosition() {
-        int theta = 0;
+    public static double getHandPosition() {
+        double theta = 0.0;
 
         if (OI.xbox.getAButton()) {
-            theta = 90;
+            theta = 90.0;
         } else {
-            theta = 0;
+            theta = 0.0;
         }
 
         return theta;

@@ -11,14 +11,14 @@ public class Elevator {
     public static VictorSPX elevatorVictorMaster = new VictorSPX(RobotMap.elevatorVictorMasterCAN);
 
     public static double getElevatorSpeed() {
-        double raw = 0;
+        double raw = 0.075;
 
-        if (OI.xbox.getXButton()) { // what button
+        if (OI.xbox.getXButton()) {
             raw = -0.250;
-        } else if (OI.xbox.getYButton()) { // what button
+        } else if (OI.xbox.getYButton()) {
             raw = 0.250;
         } else {
-            raw = 0;
+            raw = 0.075;
         }
 
         return raw;
