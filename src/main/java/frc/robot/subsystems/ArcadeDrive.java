@@ -1,3 +1,5 @@
+// ARCADE MODE FOR XBOX CONTROLLER
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -8,7 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.OI;
 import frc.robot.RobotMap;
-
+// Below sets a TalonSRX motor controller at the location, connects to mapping
 public class ArcadeDrive {
 public static WPI_TalonSRX rightTalonMaster = new WPI_TalonSRX(RobotMap.rightTalonMasterCAN);
 public static WPI_TalonSRX rightTalonSlave = new WPI_TalonSRX(RobotMap.rightTalonSlaveCAN);
@@ -16,7 +18,7 @@ public static WPI_TalonSRX rightTalonSlave = new WPI_TalonSRX(RobotMap.rightTalo
 public static WPI_TalonSRX leftTalonMaster = new WPI_TalonSRX(RobotMap.leftTalonMasterCAN);
 public static WPI_TalonSRX leftTalonSlave = new WPI_TalonSRX(RobotMap.leftTalonSlaveCAN);
 
-
+// below creates a group of motos to run in sync (oddly only the left)
 public static MotorControllerGroup leftTalons = new MotorControllerGroup(leftTalonMaster, leftTalonSlave);
 
 
@@ -27,7 +29,7 @@ public static void DrivetrainSetup() {
     rightTalonMaster.configFactoryDefault();
     rightTalonSlave.configFactoryDefault();
 
-
+// below is what we have instead of group for right
     rightTalonSlave.follow(rightTalonMaster);
 
     rightTalonMaster.setInverted(true);
