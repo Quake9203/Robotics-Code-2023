@@ -42,7 +42,7 @@ public class TankDrive {
 
   public static double getLeftDriveSpeed() {
       double raw = 0;
-
+// getrawbutton(1) is checking for A button pressed for Turbo
       if (OI.xbox.getRawButton(1)) {
         raw = Math.signum(OI.GetXboxLeftJoyY()) * Math.pow(OI.GetXboxLeftJoyY(), 2);
       } else {
