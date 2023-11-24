@@ -1,12 +1,13 @@
 package frc.robot;
-
-import edu.wpi.first.wpilibj.XboxController;
-
-public  class OI {
-    public static XboxController xbox = new XboxController(RobotMap.xboxUSB);
+// imports xbox controller. need change here for joystick
+import edu.wpi.first.wpilibj.XboxController; 
+public class OI {
+    // initializing the xbox controller names xbox, 'XboxController(RobotMap.xboxUSB) maps to USB,0
+    public static XboxController xbox = new XboxController(RobotMap.xboxUSB);  
+    // deadzones provide a range of values rather than a bool. increase deadzone to decrease sensitivity
     private static double deadzoneJoy = 0.1;
     private static double deadzoneTrigger = 0.1;
-
+    // functions below allow for tweaking deadzones for other factors. X is horizontal and Y is Vert
     public static double GetXboxLeftJoyX() {
         return Math.abs(xbox.getLeftX()) < deadzoneJoy ? 0.0 : xbox.getLeftX();
     }
