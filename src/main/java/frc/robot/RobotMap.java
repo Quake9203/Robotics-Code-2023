@@ -1,9 +1,13 @@
+/**
+* THIS IS WHERE WE MAP OUT MOTOR CONTROLS!
+*/
+
 package frc.robot;
 
 public class RobotMap {
 
     /*
-    Check CAN locations using Phoenix Tuner CAN Devices utility
+    Check CAN locations using Phoenix Tuner CAN Devices utility (app on laptop)
     PWM locations (including servos) determined by location number on RoboRIO 
     */ 
 
@@ -29,7 +33,7 @@ public class RobotMap {
 
     //new 2019
     //public static int armVictorMasterPWM = 2;
-
+// below has always been zero, regardless of what else is plugged in
     public static int xboxUSB = 0;
 
 }
