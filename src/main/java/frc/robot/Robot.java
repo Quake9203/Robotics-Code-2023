@@ -5,6 +5,9 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+// This is THE code that MAIN calls when running the robot!! Everything you want has to go here at some point
+
+
 package frc.robot;
 
 // import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -36,17 +39,31 @@ import frc.robot.subsystems.TankDrive;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
+
+// This initializes our robot as a timed robot, which means that all functions run on timedeltas
+ public class Robot extends TimedRobot {
+ /** 
+ * two private static strings below determine what auton code is run, default and center are now initialized as options for auton,
+ * this is determined in robot init
+ */
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "Center";
   private String m_autoSelected;
+  // below configures options for dashboard
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  // if we want to know the time between events, this initializes that timer, can be reset and called
   Timer autoTimer = new Timer();
+  // initializes gyroscope (ADX... is the kind we have)
   ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  // initializes accelerometer within Rio
   BuiltInAccelerometer accel = new BuiltInAccelerometer();
   double oldGyro = 0;
 
   @Override
+  /** USE WITH CAUTION
+  * this is used for anything you want to run when robot is disabled 
+  * current code completely brakes the wheels (for balancing)
+  */
   public void disabledPeriodic() {
     frc.robot.subsystems.TankDrive.drive.tankDrive(0, 0);
   }
@@ -75,10 +92,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     // DriverStation.reportError(String.valueOf(gyro.getRate()), false);
+    // collects gyro information for dashboard
     SmartDashboard.putNumber("Gyro", accel.getY());
     SmartDashboard.putNumber("Yaw", gyro.getAngle());
   }
 
+  
   /**
    * This autonomous (along with the chooser code above) shows how to select
    * between different autonomous modes using the dashboard. The sendable
@@ -90,10 +109,14 @@ public class Robot extends TimedRobot {
    * the switch structure below with additional strings. If using the
    * SendableChooser make sure to add them to the chooser code above as well.
    */
+
+  // INIT AUTON MODE
+  
   @Override
   public void autonomousInit() {
     gyro.reset();
     autoTimer.reset();
+   // below selects default or center
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
@@ -106,9 +129,10 @@ public class Robot extends TimedRobot {
    * This function is called periodically during autonomous.
    */
   
-
+// AUTON MODE RUNNING
   @Override
   public void autonomousPeriodic() {
+   // use autoSelected
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -121,7 +145,7 @@ public class Robot extends TimedRobot {
         double yaw = gyro.getAngle();
         double cmdYaw = yaw * 0.05;
 
-
+// Gyro balancing code. Feedback loop. A is a parameter of the feedback
         if (matchTime1 <= 1.9) {
           frc.robot.subsystems.TankDrive.drive.tankDrive(leftAutoSpeedClimb - cmdYaw, rightAutoSpeedClimb - cmdYaw);
         } else if (matchTime1 <= 4.3) {
@@ -176,12 +200,21 @@ public class Robot extends TimedRobot {
    * This function is called periodically during operator control.
    */
   @Override
+  
+  // RUNS TELEOP MODE
+  /**
+   * ALL code commented out is for various hardwares
+   * TANK is what needs to change for Arcade
+   */
+   
   public void teleopPeriodic() {
+   
     //frc.robot.subsystems.Drivetrain.drive.arcadeDrive(Drivetrain.getDriveSpeed(), Drivetrain.getDriveRotation());
     // frc.robot.subsystems.Shooter.shooterVictorMaster.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());
     // frc.robot.subsystems.Shooter.shooterVictorSPX.set(ControlMode.PercentOutput, Shooter.getShooterSpeed());
     // frc.robot.subsystems.Lift.liftVictorMaster.set(ControlMode.PercentOutput, Lift.getLiftSpeed());
     // frc.robot.subsystems.Elevator.elevatorVictorMaster.set(ControlMode.PercentOutput, Elevator.getElevatorSpeed());
+   
     frc.robot.subsystems.TankDrive.drive.tankDrive(TankDrive.getLeftDriveSpeed(), TankDrive.getRightDriveSpeed());
     // frc.robot.subsystems.Hand.handTop.setAngle(Hand.getHandPosition());
     // frc.robot.subsystems.Hand.handBottom.setAngle(Hand.getHandPosition());
@@ -193,6 +226,9 @@ public class Robot extends TimedRobot {
    * This function is called periodically during test mode.
    */
   @Override
+
+  // testPeriod is what runs when you hit Test on the dash
+  
   public void testPeriodic() {
     // frc.robot.subsystems.Arm.armVictorSPX.set(ControlMode.PercentOutput, Arm.getArmExtension());
   }
